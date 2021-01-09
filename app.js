@@ -1,4 +1,5 @@
 
+// -----------NPM Setup-----------
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -12,6 +13,9 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
+
+
+// -----------Mongoose-----------
 mongoose.connect("mongodb://localhost:27017/todolistDB", {useNewUrlParser: true}, { useUnifiedTopology: true });
 
 const itemsSchema = {
@@ -27,7 +31,7 @@ const item2 = new Item ({
   name: "Hit the + button to add a new item"
 });
 const item3 = new Item ({
-  name: "<-- Hit this to delete an item"
+  name: "<-- Hit this Chechbox to delete an item"
 });
 
 const defaultItems = [item1, item2, item3];
@@ -38,7 +42,7 @@ const listSchema = {
 };
 
 const List = mongoose.model("List", listSchema);
-
+// -----------Get-----------
 app.get("/", (req, res) => {
 
   Item.find({}, (err, foundItems) => {
@@ -82,6 +86,7 @@ app.get("/:customListName", (req, res) => {
 
 });
 
+// ------------Post------------
 
 app.post("/", (req, res) => {
 
@@ -121,15 +126,8 @@ app.post("/delete", (req, res) => {
       }
     });
   }
-
-
 });
-
-
-app.get("/about", (req, res) => {
-  res.render("about");
-});
-
-app.listen(3000, function() {
+// ------------Host------------
+app.listen(process.env.PORT || 3000, () => {
   console.log("Server started on port 3000");
 });
