@@ -55,14 +55,23 @@ app.get("/", (req, res) => {
 app.post("/", (req, res) => {
 
   const itemName = req.body.newItem;
-
   const item = new Item ({
     name: itemName
   });
 
-  item.save();
-  
+  item.save(); 
   res.redirect("/");
+});
+
+app.post("/delete", (req, res) => {
+  const checkedItemsId = req.body.checkbox;
+
+  Item.findByIdAndRemove(checkedItemsId, (err) => {
+    if (!err) {
+      console.log("Successfully deleted checked item");
+      res.redirect("/");
+    }
+  });
 });
 
 app.get("/work", (req,res) => {
