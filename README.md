@@ -2,10 +2,8 @@
 ## Live app
 <a href="https://tododlist-app.herokuapp.com/">To-do list</a>
 ## Table of contents
-## Table of contents
 * [Overview](#overview)
 * [How it works?](#how-it-works?)
-* [Main Features](#main-features)
 * [Technologies](#technologies)
 * [Screenshots](#screenshots)
 ## Overview
